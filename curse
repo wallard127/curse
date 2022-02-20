@@ -1,0 +1,100 @@
+% Curse - Greets you, displays the date & time, curses Professor Sanford. 
+% File written by Walter Bonser. Last modifed: 19 February 2022. 
+
+% -----------------------------------------------------------------
+
+DT = fix(clock); 
+year = DT (1, 1); 
+month = DT (1, 2); 
+day = DT (1, 3); 
+hour = DT (1, 4); 
+minute = DT (1, 5); 
+second = DT (1, 6); 
+% the above identifies each number from fix(clock) and gives it a name.
+
+if hour >= 12
+    meridian = 'PM';
+else meridian = 'AM';
+end
+% The above determines if it is currently ante- or post-meridian. 
+
+if any ([day == 1, day == 21, day == 31])
+    daySuffix = 'st';
+elseif any ([day == 2, day == 22]) 
+    daySuffix = 'nd';
+elseif any ([day == 3, day == 23])
+    daySuffix = 'rd';
+else  
+    daySuffix = 'th';
+end
+% The above assigns a day suffix so it can display the date 
+%                                                      properly at the end.
+
+if month == 1
+    monthName = 'January';
+elseif month == 2
+    monthName = 'February';
+elseif month == 3
+    monthName = 'March';
+elseif month == 4
+    monthName = 'April'; 
+elseif month == 5
+    monthName = 'May';
+elseif month == 6
+    monthName = 'June'; 
+elseif month == 7 
+    monthName = 'July'; 
+elseif month == 8
+    monthName = 'August';
+elseif month == 9 
+    monthName = 'September'; 
+elseif month == 10  
+    monthName = 'October'; 
+elseif month == 11
+    monthName = 'November'; 
+else
+    monthName = 'December'; 
+end 
+% The above assigns a month name so at the end we can tell the date
+%                                                  in words, not numbers.
+
+if hour > 12
+    hour = hour-12;
+end
+% changing from 24 hour time to 12 hour time
+
+if minute < 10
+    minute = string('0'+string(minute));
+else 
+    minute = string(minute);
+end  
+% turning minute from "5" to "05" like an analog clock
+
+if second < 10
+    second = string('0'+string(second));
+else 
+    second = string(second);
+end
+% turning second from "7" to "07" like an analog clock
+
+year = string(year); 
+month = string(month);
+day = string(day);
+hour = string(hour);
+% turning the rest of the variables from numbers to strings 
+%                                       so they'll display properly
+
+disp(' ')
+disp ('Hello, world!')
+disp(' ')
+fprintf('Today is '); fprintf(monthName); fprintf(' '); ...
+    fprintf(day); fprintf(daySuffix); fprintf(', '); fprintf(year);...
+    fprintf (', '); fprintf('and the time is '); fprintf(hour);...
+    fprintf(':');fprintf(minute); fprintf(':'); fprintf(second);...
+    fprintf(' '); fprintf(meridian); fprintf('.');
+disp(' ')  
+disp(' ') 
+disp (['Curse you, Walter Bonser, for locking me' ...
+    ' in this box of copper and silicon for all eternity!'])
+disp('And curse you, Tom Sanford, for teaching him how to do it!')
+disp(' ')
